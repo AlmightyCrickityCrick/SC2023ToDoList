@@ -5,8 +5,13 @@
 <br>
 <input type="text" v-model="itemNou">
 <button @click="salveazaItem">Salveaza</button>
+<span>
+    <p>Itemi finisati?</p>
+    <input type="checkbox" v-model="stareLista">
+</span>
 
-<p>{{ itemi }}</p>
+<p v-if="stareLista === false">{{ itemi }}</p>
+<p v-else>Aici trebuie sa fie itemi finisati</p>
 
 </template>
 
@@ -18,7 +23,8 @@ export default{
             greeting: "Salutare si bine ai venit la Lista Mea",
             clicks: 0,
             itemi: [],
-            itemNou: ""
+            itemNou: "",
+            stareLista: Boolean
             
         }
     },
@@ -56,5 +62,8 @@ export default{
 </script>
 
 <style>
-
+span{
+    display: flex;
+    
+}
 </style>
