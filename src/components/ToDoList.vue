@@ -2,14 +2,23 @@
 <h1>My To Do List</h1>
 <p>{{ this.prettyGreeting }} pentru a {{ clicks }} oara! </p>
 <button @click="incrementeazaClick">Apasa-ma ca sa ma incrementezi</button>
+<br>
+<input type="text" @input="rescrieItem">
+<button @click="salveazaItem">Salveaza</button>
+
+<p>{{ itemi }}</p>
+
 </template>
 
 <script>
+
 export default{
     data: function(){
         return{
             greeting: "Salutare si bine ai venit la Lista Mea",
-            clicks: 0
+            clicks: 0,
+            itemi: [],
+            itemNou: ""
             
         }
     },
@@ -21,8 +30,25 @@ export default{
     methods: {
         incrementeazaClick(){
             this.clicks++;
+        },
+
+        rescrieItem(event){
+            console.log(event.target.value)
+            this.itemNou = event.target.value
+        },
+
+        salveazaItem(){
+            this.itemi.push(this.itemNou)
         }
 
+
+    },
+    beforeMount(){
+        console.log("Eu ma incarc")
+    },
+     
+    mounted(){
+        console.log("Eu m-am incarcat")
     }
     
 
