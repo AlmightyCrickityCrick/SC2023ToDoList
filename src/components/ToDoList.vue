@@ -4,14 +4,16 @@
 <button @click="incrementeazaClick">Apasa-ma ca sa ma incrementezi</button>
 <br>
 <input type="text" v-model="itemNou">
+<input type="checkbox" v-model="stareItem">
 <button @click="salveazaItem">Salveaza</button>
 <span>
     <p>Itemi finisati?</p>
     <input type="checkbox" v-model="stareLista">
 </span>
 
-<p v-if="stareLista === false">{{ itemi }}</p>
-<p v-else>Aici trebuie sa fie itemi finisati</p>
+<template v-for="i in itemi">
+    <li v-if="i != undefined && stareLista == i.state">{{ i.text }}</li>
+</template>
 
 </template>
 
@@ -22,8 +24,9 @@ export default{
         return{
             greeting: "Salutare si bine ai venit la Lista Mea",
             clicks: 0,
-            itemi: [],
+            itemi: [{text: "salut", state: true}],
             itemNou: "",
+            stareItem: Boolean,
             stareLista: Boolean
             
         }
@@ -44,7 +47,7 @@ export default{
         // },
 
         salveazaItem(){
-            this.itemi.push(this.itemNou)
+            this.itemi.push({text: this.itemNou, state: this.stareItem})
         }
 
 
