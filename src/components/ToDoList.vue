@@ -3,7 +3,7 @@
 <p>{{ this.prettyGreeting }} pentru a {{ clicks }} oara! </p>
 <button @click="incrementeazaClick">Apasa-ma ca sa ma incrementezi</button>
 <br>
-<input type="text" @input="rescrieItem">
+<input type="text" v-model="itemNou">
 <button @click="salveazaItem">Salveaza</button>
 
 <p>{{ itemi }}</p>
@@ -32,10 +32,10 @@ export default{
             this.clicks++;
         },
 
-        rescrieItem(event){
-            console.log(event.target.value)
-            this.itemNou = event.target.value
-        },
+        // rescrieItem(event){
+        //     console.log(event.target.value)
+        //     this.itemNou = event.target.value
+        // },
 
         salveazaItem(){
             this.itemi.push(this.itemNou)
